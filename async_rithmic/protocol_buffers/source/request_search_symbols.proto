@@ -1,4 +1,3 @@
-syntax = "proto3";
 
 package rti;
 
@@ -7,13 +6,11 @@ message RequestSearchSymbols
 	// PB_OFFSET = 100000, is the offset added for each MNM field id
 
         enum Pattern {
-PATTERN_UNSPECIFIED = 0;
 	               EQUALS   =  1;
 		       CONTAINS =  2;
                      } 
 
         enum InstrumentType {
-INSTRUMENTTYPE_UNSPECIFIED = 0;
 	                      FUTURE            =   1;
 			      FUTURE_OPTION     =   2;
 			      FUTURE_STRATEGY   =   3;
@@ -26,12 +23,12 @@ INSTRUMENTTYPE_UNSPECIFIED = 0;
 			      SYNTHETIC         =  10;
                             }
      
-	int32           template_id         = 154467;    // PB_OFFSET + MNM_TEMPLATE_ID
+	required int32           template_id         = 154467;    // PB_OFFSET + MNM_TEMPLATE_ID
 	repeated string          user_msg            = 132760;    // PB_OFFSET + MNM_USER_MSG
 
-	string          search_text         = 120008;    // PB_OFFSET + MNM_TEXT
-	string          exchange            = 110101;    // PB_OFFSET + MNM_EXCHANGE
-	string          product_code        = 100749;    // PB_OFFSET + MNM_PRODUCT_CODE
-	InstrumentType  instrument_type     = 110116;    // PB_OFFSET + MNM_INSTRUMENT_TYPE
-	Pattern         pattern             = 155008;    // PB_OFFSET + MNM_SEARCH_PATTERN
+	optional string          search_text         = 120008;    // PB_OFFSET + MNM_TEXT
+	optional string          exchange            = 110101;    // PB_OFFSET + MNM_EXCHANGE
+	optional string          product_code        = 100749;    // PB_OFFSET + MNM_PRODUCT_CODE
+	optional InstrumentType  instrument_type     = 110116;    // PB_OFFSET + MNM_INSTRUMENT_TYPE
+	optional Pattern         pattern             = 155008;    // PB_OFFSET + MNM_SEARCH_PATTERN
 	}

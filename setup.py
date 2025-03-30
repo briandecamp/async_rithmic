@@ -44,7 +44,7 @@ setuptools.setup(
     python_requires='>=3.8',
     install_requires=[
         'websockets>=11.0,<15.0',
-        'protobuf==4.25.4',
+        'protobuf>=5.26.1,<6.0dev',
         'pytz>=2022.5',
         'tzlocal>=5.2',
     ],

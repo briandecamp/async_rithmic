@@ -1,4 +1,3 @@
-syntax = "proto3";
 
 package rti;
 
@@ -12,7 +11,6 @@ message RequestBracketOrder
 	              }
 
 	enum BracketType {
-    BRACKETTYPE_UNSPECIFIED = 0;
 	                  STOP_ONLY               = 1;
 			  TARGET_ONLY             = 2;
 			  TARGET_AND_STOP         = 3;
@@ -22,13 +20,11 @@ message RequestBracketOrder
                          }
 
         enum TransactionType {
-    TRANSACTIONTYPE_UNSPECIFIED = 0;
 	                      BUY  = 1;
 		              SELL = 2;
 	                     }
 
         enum Duration {
-    DURATION_UNSPECIFIED = 0;
 	               DAY  = 1;
 		       GTC  = 2;
 		       IOC  = 3;
@@ -36,7 +32,6 @@ message RequestBracketOrder
                       }
  
         enum PriceType {
-    PRICETYPE_UNSPECIFIED = 0;
 	                LIMIT              =  1;
 			MARKET             =  2;
 			STOP_LIMIT         =  3;
@@ -46,13 +41,11 @@ message RequestBracketOrder
                        }
 
         enum OrderPlacement {
-    ORDERPLACEMENT_UNSPECIFIED = 0;
 	                     MANUAL  = 1;
 			     AUTO    = 2;
 	                    }
 
 	enum PriceField {
-    PRICEFIELD_UNSPECIFIED = 0;
 	                 BID_PRICE    =  1;
 			 OFFER_PRICE  =  2;
 			 TRADE_PRICE  =  3;
@@ -60,7 +53,6 @@ message RequestBracketOrder
 	                }
 
 	enum Condition {
-    CONDITION_UNSPECIFIED = 0;
 	     	        EQUAL_TO               =  1;
 			NOT_EQUAL_TO           =  2;
 			GREATER_THAN           =  3;
@@ -70,65 +62,65 @@ message RequestBracketOrder
 	               }
 
 
-	 int32               template_id                         = 154467;
+	required  int32               template_id                         = 154467;
 	repeated  string              user_msg                            = 132760;
-	 string              user_tag                            = 154119;
-	 string              window_name                         = 154629;
+	optional  string              user_tag                            = 154119;
+	optional  string              window_name                         = 154629;
 
-	 string              fcm_id                              = 154013;
-	 string              ib_id                               = 154014;
-	 string              account_id                          = 154008;
+	optional  string              fcm_id                              = 154013;
+	optional  string              ib_id                               = 154014;
+	optional  string              account_id                          = 154008;
 
-	 string              symbol                              = 110100;
-	 string              exchange                            = 110101;
+	optional  string              symbol                              = 110100;
+	optional  string              exchange                            = 110101;
 
-	 int32               quantity                            = 112004;
-	 double              price                               = 110306;
-	 double              trigger_price                       = 149247;
+	optional  int32               quantity                            = 112004;
+	optional  double              price                               = 110306;
+	optional  double              trigger_price                       = 149247;
 
-	 TransactionType     transaction_type                    = 112003;
-	 Duration            duration                            = 112005;
-	 PriceType           price_type                          = 112008;
+	optional  TransactionType     transaction_type                    = 112003;
+	optional  Duration            duration                            = 112005;
+	optional  PriceType           price_type                          = 112008;
 
-	 string              trade_route                         = 112016;
-	 OrderPlacement      manual_or_auto                      = 154710;
+	optional  string              trade_route                         = 112016;
+	optional  OrderPlacement      manual_or_auto                      = 154710;
 
-	 UserType            user_type                           = 154036;
-	 BracketType         bracket_type                        = 157087;
+	optional  UserType            user_type                           = 154036;
+	optional  BracketType         bracket_type                        = 157087;
 
-	 int32               break_even_ticks                    = 157170;
-	 int32               break_even_trigger_ticks            = 157172;
+	optional  int32               break_even_ticks                    = 157170;
+	optional  int32               break_even_trigger_ticks            = 157172;
 
-	 int32               target_quantity                     = 154457;
-	 int32               target_ticks                        = 154456;
+	repeated  int32               target_quantity                     = 154457;
+	repeated  int32               target_ticks                        = 154456;
 
-	 int32		      stop_quantity                       = 154459;
-	 int32		      stop_ticks	                  = 154458;
+	repeated  int32		      stop_quantity                       = 154459;
+	repeated  int32		      stop_ticks	                  = 154458;
 
-	 int32               trailing_stop_trigger_ticks         = 157124;
+	optional  int32               trailing_stop_trigger_ticks         = 157124;
 
-	 bool	              trailing_stop_by_last_trade_price   = 157062;
-	 bool                target_market_order_if_touched      = 157151;
-	 bool                stop_market_on_reject               = 154857;
+	optional  bool	              trailing_stop_by_last_trade_price   = 157062;
+	optional  bool                target_market_order_if_touched      = 157151;
+	optional  bool                stop_market_on_reject               = 154857;
 
-	 int32		      target_market_at_ssboe              = 157145;
-	 int32		      target_market_at_usecs		  = 157146;
+	optional  int32		      target_market_at_ssboe              = 157145;
+	optional  int32		      target_market_at_usecs		  = 157146;
 
-	 int32		      stop_market_at_ssboe		  = 157147;
-	 int32		      stop_market_at_usecs		  = 157148;
+	optional  int32		      stop_market_at_ssboe		  = 157147;
+	optional  int32		      stop_market_at_usecs		  = 157148;
 
-	 int32		      target_market_order_after_secs	  = 157149;
+	optional  int32		      target_market_order_after_secs	  = 157149;
 
-	 int32               release_at_ssboe                    = 154487;
-	 int32               release_at_usecs                    = 154549;
+	optional  int32               release_at_ssboe                    = 154487;
+	optional  int32               release_at_usecs                    = 154549;
 
-	 int32               cancel_at_ssboe                     = 157085;
-	 int32               cancel_at_usecs                     = 157086;
-         int32               cancel_after_secs                   = 154488;
+	optional  int32               cancel_at_ssboe                     = 157085;
+	optional  int32               cancel_at_usecs                     = 157086;
+        optional  int32               cancel_after_secs                   = 154488;
 
-	 string              if_touched_symbol                   = 154451;
-	 string              if_touched_exchange                 = 154452;
-	 Condition           if_touched_condition                = 154453;
-	 PriceField          if_touched_price_field              = 154454;
-	 double              if_touched_price                    = 153632;
+	optional  string              if_touched_symbol                   = 154451;
+	optional  string              if_touched_exchange                 = 154452;
+	optional  Condition           if_touched_condition                = 154453;
+	optional  PriceField          if_touched_price_field              = 154454;
+	optional  double              if_touched_price                    = 153632;
 	}
