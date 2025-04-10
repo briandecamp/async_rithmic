@@ -1,13 +1,14 @@
-import os
+"""Protocol buffer message types."""
+
 import importlib
+import os
+import sys
 
-# Get the directory path of the current file
-package_dir = os.path.dirname(__file__)
+# Add the generated directory to the Python path
+generated_dir = os.path.join(os.path.dirname(__file__), 'generated')
+if generated_dir not in sys.path:
+    sys.path.insert(0, generated_dir)
 
-# Loop through all files in the directory
-for filename in os.listdir(package_dir):
-    # Import any Python files except __init__.py
-    if filename.endswith('.py') and filename != '__init__.py':
-        module_name = filename[:-3]  # Remove the .py extension
-        # Import the module dynamically
-        importlib.import_module(f'.{module_name}', package=__name__)
+# Import all *_pb2 modules from the generated directory
+for module_name in [f[:-3] for f in os.listdir(generated_dir) if f.endswith('_pb2.py')]:
+    importlib.import_module(f'.{module_name}', package=__name__)
