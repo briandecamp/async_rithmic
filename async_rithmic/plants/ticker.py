@@ -1,7 +1,7 @@
 from typing import Union
 
 from .base import BasePlant
-from ..enums import DataType, SearchPattern
+from ..enums import DataType, SearchPattern, InstrumentType
 from ..logger import logger
 from .. import protocol_buffers as pb
 
@@ -17,13 +17,20 @@ class TickerPlant(BasePlant):
         :return: (str) the front month futures contract
         """
 
-        response = await self._send_and_recv(
-            template_id=113,
-            symbol=symbol,
-            exchange=exchange,
-            user_msg=[symbol]
-        )
-        return response.trading_symbol
+        # Front month contract is not working
+        # response = await self._send_and_recv(
+        #     template_id=113,
+        #     symbol=symbol,
+        #     exchange=exchange,
+        #     user_msg=[symbol]
+        # )
+
+        contracts = await self.search_symbols(symbol, product_code=symbol, exchange=exchange, instrument_type=InstrumentType.FUTURE)
+        if len(contracts) == 0:
+            return None
+
+        sorted_contracts = sorted(contracts, key=lambda obj: obj.expiration_date)
+        return sorted_contracts[0].symbol
 
     async def subscribe_to_market_data(
         self,
@@ -94,5 +101,12 @@ class TickerPlant(BasePlant):
 
             await self.client.on_tick.notify(data)
 
+        elif response.template_id == 153:
+            # Market data stream: QuoteStatistics
+            data = self._response_to_dict(response)
+            data["datetime"] = self._ssboe_usecs_to_datetime(response.ssboe, response.usecs)
+            data["data_type"] = DataType.HIGH_BID_LOW_ASK
+
+            await self.client.on_tick.notify(data)
         else:
             logger.warning(f"Ticker plant: unhandled inbound message with template_id={response.template_id}")

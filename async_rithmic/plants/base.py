@@ -25,6 +25,7 @@ TEMPLATES_MAP = {
     17: pb.response_rithmic_system_info_pb2.ResponseRithmicSystemInfo,
     18: pb.request_heartbeat_pb2.RequestHeartbeat,
     19: pb.response_heartbeat_pb2.ResponseHeartbeat,
+    75: pb.reject_pb2.Reject,
 
     # Market Data Infrastructure
     100: pb.request_market_data_update_pb2.RequestMarketDataUpdate,
@@ -41,10 +42,19 @@ TEMPLATES_MAP = {
 
     150: pb.last_trade_pb2.LastTrade,
     151: pb.best_bid_offer_pb2.BestBidOffer,
-    #156: pb.order_book_pb2.OrderBook,
-    #160: pb.depth_by_order.DepthByOrder,
-    #161: pb.depth_by_order_end_event.DepthByOrderEndEvent,
-
+    152: pb.trade_statistics_pb2.TradeStatistics,
+    153: pb.quote_statistics_pb2.QuoteStatistics,
+    154: pb.indicator_prices_pb2.IndicatorPrices,
+    155: pb.end_of_day_prices_pb2.EndOfDayPrices,
+    156: pb.order_book_pb2.OrderBook,
+    157: pb.market_mode_pb2.MarketMode,
+    158: pb.open_interest_pb2.OpenInterest,
+    159: pb.front_month_contract_update_pb2.FrontMonthContractUpdate,
+    160: pb.depth_by_order_pb2.DepthByOrder,
+    161: pb.depth_by_order_end_event_pb2.DepthByOrderEndEvent,
+    162: pb.symbol_margin_rate_pb2.SymbolMarginRate,
+    163: pb.order_price_limits_pb2.OrderPriceLimits,
+    
     # Order Plant Infrastructure
     300: pb.request_login_info_pb2.RequestLoginInfo,
     301: pb.response_login_info_pb2.ResponseLoginInfo,

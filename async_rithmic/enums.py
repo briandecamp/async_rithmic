@@ -5,6 +5,20 @@ from . import protocol_buffers as pb
 class DataType(enum.Enum):
     LAST_TRADE = 1
     BBO = 2
+    ORDER_BOOK = 4
+    OPEN = 8
+    OPENING_INDICATOR = 16
+    HIGH_LOW = 32
+    HIGH_BID_LOW_ASK = 64
+    CLOSE = 128
+    CLOSING_INDICATOR = 256
+    SETTLEMENT = 512
+    MARKET_MODE = 1024
+    OPEN_INTEREST = 2048
+    MARGIN_RATE = 4096
+    HIGH_PRICE_LIMIT = 8192
+    LOW_PRICE_LIMIT = 16384
+    PROJECTED_SETTLEMENT = 32768
 
 OrderType = pb.request_new_order_pb2.RequestNewOrder.PriceType
 OrderDuration = pb.request_new_order_pb2.RequestNewOrder.Duration
