@@ -322,9 +322,15 @@ class OrderPlant(BasePlant):
         - `target_ticks`: New take-profit in ticks
 
         Note: we can't update SL/TP/main order concurrently or Rithmic will send back an error: 'Atomic order operation in progress'
+
+        For time-critical modifications, pass `order=` with an object containing
+        the required fields (account_id, basket_id, symbol, exchange, quantity,
+        price_type, price) to skip the get_order() network call.
         """
 
-        order = await self.get_order(**kwargs)
+        order = kwargs.pop('order', None)
+        if order is None:
+            order = await self.get_order(**kwargs)
         if not order:
             raise Exception(f"Order not found: {kwargs}")
 
